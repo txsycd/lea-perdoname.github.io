@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perdóname :(</title>
+
+    <style>
+
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg,#ffb6c1,#ffd6e7);
+            font-family: Arial,sans-serif;
+            overflow: hidden;
+        }
+
+        .contenedor {
+            text-align: center;
+            padding: 20px;
+            z-index: 2;
+        }
+
+        h1 {
+            font-size: 55px;
+            color: white;
+            text-shadow: 2px 2px 8px black;
+        }
+
+        p {
+            font-size: 22px;
+            color: white;
+        }
+
+        .botones {
+            position: relative;
+            width: 420px;
+            height: 100px;
+            margin: auto;
+        }
+
+        button {
+            width: 130px; /* tamaño fijo */
+            height: 55px;
+            border: none;
+            border-radius: 20px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: .3s;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+            button:focus,
+            button:active {
+                outline: none;
+            }
+
+        #si {
+            background: #4CAF50;
+            color: white;
+            position: absolute;
+            left: 20px;
+        }
+
+            #si:hover {
+                transform: scale(1.08);
+            }
+
+        #no {
+            background: #ff4d4d;
+            color: white;
+            position: absolute;
+            right: 20px;
+        }
+
+        .corazon {
+            position: fixed;
+            top: -50px;
+            font-size: 25px;
+            animation: caer linear forwards;
+        }
+
+        @keyframes caer {
+
+            from {
+                transform: translateY(-100px);
+            }
+
+            to {
+                transform: translateY(calc(100vh + 100px));
+            }
+        }
+
+        @media(max-width:600px) {
+
+            h1 {
+                font-size: 36px;
+            }
+
+            p {
+                font-size: 18px;
+            }
+
+            .botones {
+                width: 340px;
+                height: 90px;
+            }
+
+            button {
+                width: 120px;
+                height: 50px;
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="contenedor">
+
+        <h1>¿Me perdonas? 😔</h1>
+
+        <p>Sé que la cagué... pero prometo mejorar 😭</p>
+
+        <div class="botones">
+
+            <button id="si">
+                Sí ❤️
+            </button>
+
+            <button id="no">
+                No 😡
+            </button>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        const no = document.getElementById("no");
+
+        no.addEventListener("click", () => {
+
+            let x = Math.random() * (window.innerWidth - 160);
+
+            let y = Math.random() * (window.innerHeight - 100);
+
+            no.style.position = "fixed";
+
+            no.style.left = x + "px";
+            no.style.top = y + "px";
+
+        });
+
+        document.getElementById("si").onclick = () => {
+
+            document.querySelector(".contenedor").innerHTML=`
+
+<h1 style="
+font-size:50px;
+color:white;
+margin-bottom:80px;
+position:relative;
+z-index:5;
+">
+
+TE AMO MUCHO LEA ❤️😭
+
+</h1>
+
+<div id="niño" style="
+position:fixed;
+right:20px;
+bottom:0;
+width:320px;
+height:260px;
+">
+
+<div id="globo" style="
+position:absolute;
+right:170px;
+bottom:150px;
+
+background:white;
+color:black;
+
+padding:12px 18px;
+
+border-radius:20px;
+
+font-size:20px;
+font-weight:bold;
+
+max-width:180px;
+">
+
+Te voy a dar una enchilada 🌯❤️
+
+<div style="
+position:absolute;
+right:-8px;
+bottom:15px;
+
+width:20px;
+height:20px;
+
+background:white;
+transform:rotate(45deg);
+">
+</div>
+
+</div>
+
+<img
+src="italo.png"
+style="
+position:absolute;
+right:0;
+bottom:0;
+
+height:240px;
+width:auto;
+object-fit:contain;
+">
+
+</div>
+
+`;
+
+if(window.innerWidth < 600){
+
+document.getElementById("niño").style.transform="scale(0.80)";
+document.getElementById("niño").style.transformOrigin="bottom right";
+
+document.getElementById("globo").style.fontSize="15px";
+document.getElementById("globo").style.padding="10px 14px";
+document.getElementById("globo").style.maxWidth="130px";
+
+}
+
+            crearCorazones();
+
+        };
+
+        function crearCorazones() {
+
+            setInterval(() => {
+
+                let corazon = document.createElement("div");
+
+                corazon.innerHTML = "❤️";
+
+                corazon.className = "corazon";
+
+                corazon.style.left = Math.random() * 100 + "vw";
+
+                corazon.style.animationDuration =
+                    (Math.random() * 3 + 2) + "s";
+
+                document.body.appendChild(corazon);
+
+                setTimeout(() => {
+
+                    corazon.remove();
+
+                }, 5000);
+
+            }, 200);
+
+        }
+
+    </script>
+
+</body>
+</html>
